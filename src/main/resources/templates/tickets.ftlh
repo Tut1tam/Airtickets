@@ -6,10 +6,16 @@
 <body>
 <h1>AirTickets</h1><hr>
 <h4>Дешевые авиабилеты</h4>
+<form action="/" method="get">
+    Поиск билета по названию авиакомпании: <input type="text" name="title"><br>
+    <input type="submit" value="Поиск"/>
+</form>
 <#list tickets as ticket>
     <div>
         <p><b>${ticket.title}</b> | ${ticket.from_where} -> ${ticket.to_where} | <a href="/ticket/${ticket.id}">Подробнее...</a></p>
     </div>
+    <#else>
+        <h3>Билетов нет</h3>
 </#list>
 <hr>
 <h3>Добавить новый полет</h3>

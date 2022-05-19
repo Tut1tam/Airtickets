@@ -1,39 +1,33 @@
 package com.example.Airtickets.services;
 
 import com.example.Airtickets.models.Ticket;
+import com.example.Airtickets.repositories.TicketRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class TicketService {
+    private final TicketRepository ticketRepository;
+
     private List<Ticket> tickets = new ArrayList<>();
-    private long ID = 0;
-
-    {
-        tickets.add(new Ticket(++ID, "Победа", "18.05.2022", 23000, "Москва", "Сочи"));
-        tickets.add(new Ticket(++ID, "Победа", "19.05.2022", 46000, "Сочи", "Москва"));
-
+    public List<Ticket> listTickets(String title) {
+        if (title != null) ticketRepository.findByTitle(title);
+        return ticketRepository.findAll();
     }
-
-    public List<Ticket> list() {
-        return tickets;
-    }
-
     public void saveTicket(Ticket ticket) {
-        ticket.setId(++ID);
-        tickets.add(ticket);
+        log.info("Saving new {}", ticket);
+        ticketRepository.save(ticket);
     }
-
     public void deleteTicket(Long id) {
-        tickets.removeIf(ticket -> ticket.getId() == id);
+        ticketRepository.deleteById(id);
     }
-
     public Ticket getTicketById(Long id) {
-        for (Ticket ticket : tickets) {
-            if (ticket.getId() == id) return ticket;
-        }
-        return null;
+        return ticketRepository.findById(id).orElse(null);
     }
 }
