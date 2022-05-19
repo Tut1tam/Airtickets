@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,13 +26,16 @@ public class TicketController {
 
     @GetMapping("/ticket/{id}")
     public String ticketInfo(@PathVariable Long id, Model model){
-        model.addAttribute("ticket", ticketService.getTicketById(id));
+        Ticket ticket = ticketService.getTicketById(id);
+        model.addAttribute("ticket", ticket);
+        model.addAttribute("images", ticket.getImages());
         return "ticket-info";
     }
 
     @PostMapping("/ticket/create")
-    public String createTicket(Ticket ticket) {
-        ticketService.saveTicket(ticket);
+    public String createTicket(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
+                               Ticket ticket) throws IOException {
+        ticketService.saveTicket(ticket, file1, file2);
         return "redirect:/";
     }
 
