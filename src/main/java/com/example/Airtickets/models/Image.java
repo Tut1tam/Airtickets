@@ -25,7 +25,7 @@ public class Image {
     @Column(name = "contentType")
     private String contentType;
     @Column(name = "isPreviewImage")
-    private Boolean isPreviewImage;
+    private boolean isPreviewImage;
     @Lob
     private byte[] bytes;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

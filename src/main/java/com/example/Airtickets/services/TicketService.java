@@ -32,7 +32,6 @@ public class TicketService {
         Image image2;
         if (file1.getSize() != 0){
             image1 = toImageEntity(file1);
-            image1.setIsPreviewImage(true);
             ticket.addImageToTicket(image1);
         }
         if (file2.getSize() != 0){
