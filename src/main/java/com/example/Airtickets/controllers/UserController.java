@@ -12,18 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-
     @GetMapping("/registration")
     public String registration() {
         return "registration";
     }
-
-
     @PostMapping("/registration")
     public String createUser(User user, Model model) {
         if (!userService.createUser(user)) {
@@ -31,10 +27,5 @@ public class UserController {
             return "registration";
         }
         return "redirect:/login";
-    }
-
-    @GetMapping("/hello")
-    public String securityUrl() {
-        return "hello";
     }
 }
