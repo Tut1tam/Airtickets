@@ -9,5 +9,4 @@ class AirticketsApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

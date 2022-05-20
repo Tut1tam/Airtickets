@@ -12,7 +12,6 @@
 <b>Откуда: </b>${ticket.from_where}<br>
 <b>Куда: </b>${ticket.to_where}<br>
 <hr>
-<h3>Добавить новый полет</h3>
 <#if user.isAdmin()>
 <form action="/admin/ticket/delete/${ticket.id}" method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}">
