@@ -2,13 +2,16 @@ package com.example.Airtickets.services;
 
 import com.example.Airtickets.models.Image;
 import com.example.Airtickets.models.Ticket;
+import com.example.Airtickets.models.User;
 import com.example.Airtickets.repositories.TicketRepository;
+import com.example.Airtickets.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TicketService {
     private final TicketRepository ticketRepository;
+    private final UserRepository userRepository;
 
     private List<Ticket> tickets = new ArrayList<>();
     public List<Ticket> listTickets(String title) {
@@ -40,6 +44,11 @@ public class TicketService {
         Ticket ticketFromDb = ticketRepository.save(ticket);
         ticketFromDb.setPreviewImageId(ticketFromDb.getImages().get(0).getId());
         ticketRepository.save(ticket);
+    }
+
+    public User getUserByPrincipal(Principal principal){
+        if (principal == null) return new User();
+        return userRepository.findByEmail(principal.getName());
     }
 
     private Image toImageEntity(MultipartFile file) throws IOException {
