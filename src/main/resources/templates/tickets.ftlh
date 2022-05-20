@@ -30,5 +30,18 @@
         <h3>Билетов нет</h3>
 </#list>
 <hr>
+    <#if user.isAdmin()>
+        <h3>Добавить новый полет</h3>
+        <form action="/ticket/create" method="post" enctype="multipart/form-data">
+            Название рейса: <input type="text" name="title"/><br><br>
+            Дата рейса: <input type="text" name="date"/><br><br>
+            Цена билета: <input type="number" name="price"/><br><br>
+            Откуда: <input type="text" name="from_where"/><br><br>
+            Куда: <input type="text" name="to_where"/><br><br>
+            Добавить первую фотографию: <input type="file", name="file1"><br><br>
+            Добавить вторую фотографию: <input type="file", name="file2"><br><br>
+            <input type="submit" value="Добавить полет">
+        </form>
+    </#if>
 </body>
 </html>
