@@ -23,6 +23,7 @@
         <form action="/logout" method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <input type="submit" value="Выйти" class="btn btn-primary" role="button">
+            <a href="/user/${user.id}" class="btn btn-primary">Профиль пользователя</a>
         </form>
     <#else>
         <a href="/login" class="btn btn-primary" role="button" style="margin: 5px 5px;">Войти</a>

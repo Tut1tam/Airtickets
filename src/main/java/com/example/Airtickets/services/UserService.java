@@ -1,6 +1,7 @@
 package com.example.Airtickets.services;
 
 import com.example.Airtickets.enums.Role;
+import com.example.Airtickets.models.Ticket;
 import com.example.Airtickets.models.User;
 import com.example.Airtickets.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -58,5 +59,8 @@ public class UserService {
             }
         }
         userRepository.save(user);
+    }
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 }
