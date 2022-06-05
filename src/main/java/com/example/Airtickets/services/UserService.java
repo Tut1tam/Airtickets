@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -59,6 +60,15 @@ public class UserService {
             }
         }
         userRepository.save(user);
+    }
+
+    public void addTicketToUser(User user, Ticket ticket){
+        user.getUserTickets().add(ticket);
+        userRepository.save(user);
+    }
+    public User getUserByPrincipal(Principal principal){
+        if (principal == null) return new User();
+        return userRepository.findByEmail(principal.getName());
     }
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);

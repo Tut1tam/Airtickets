@@ -29,10 +29,6 @@ public class TicketService {
         Ticket ticketFromDb = ticketRepository.save(ticket);
         ticketRepository.save(ticket);
     }
-    public User getUserByPrincipal(Principal principal){
-        if (principal == null) return new User();
-        return userRepository.findByEmail(principal.getName());
-    }
 
     public void deleteTicket(Long id) {
         ticketRepository.deleteById(id);

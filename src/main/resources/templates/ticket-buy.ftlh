@@ -37,14 +37,33 @@
             </div>
         </div>
         <#if user.isAdmin()>
-        <form action="/admin/ticket/delete/${ticket.id}" method="post">
-            <input type="hidden" name="_csrf" value="${_csrf.token}">
-            <input type="submit" value="Удалить рейс" class="btn btn-primary" style="margin: 5px 5px;">
-        </form>
+            <form action="/admin/ticket/delete/${ticket.id}" method="post">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                <input type="submit" value="Удалить рейс" class="btn btn-primary" style="margin: 5px 5px;">
+            </form>
         </#if>
-        <a href="/ticket/${ticket.id}/buy" class="btn btn-primary">Купить билет</a>
-        </div>
     </div>
+</div>
+<hr>
+<div class="buy_form">
+    <h4>Оплата билета</h4>
+    <form action="/ticket/${ticket.id}/buy" method="post">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Номер карты</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Срок действия ММ/ГГ</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">CVV</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" class="btn btn-primary" value="Подтвердить оплату">
+    </form>
+</div>
 </body>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script></script>

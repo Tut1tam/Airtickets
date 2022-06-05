@@ -51,32 +51,32 @@
 </div>
 </div>
 <hr>
-<h3>Добавить новый полет</h3>
 <div class="add_ticket" style="margin: 15px;">
-<form action="/admin/ticket/create" method="post">
-    <div class="form-group">
-        <label for="exampleInputEmail1">Название рейса:</label>
-        <input type="text" name="title" class="form-control" id="exampleInputEmail1">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Дата рейса:</label>
-        <input type="text" name="date" class="form-control" id="exampleInputEmail1">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Цена билета:</label>
-        <input type="number" name="price" class="form-control" id="exampleInputEmail1">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Откуда:</label>
-        <input type="text" name="from_where" class="form-control" id="exampleInputEmail1">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Куда:</label>
-        <input type="text" name="to_where" class="form-control" id="exampleInputEmail1">
-    </div>
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Добавить полет" class="btn btn-primary">
-</form>
+    <h3>Добавить новый полет</h3>
+    <form action="/admin/ticket/create" method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Название рейса:</label>
+            <input type="text" name="title" class="form-control" id="exampleInputEmail1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Дата рейса:</label>
+            <input type="text" name="date" class="form-control" id="exampleInputEmail1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Цена билета:</label>
+            <input type="number" name="price" class="form-control" id="exampleInputEmail1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Откуда:</label>
+            <input type="text" name="from_where" class="form-control" id="exampleInputEmail1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Куда:</label>
+            <input type="text" name="to_where" class="form-control" id="exampleInputEmail1">
+        </div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Добавить полет" class="btn btn-primary">
+    </form>
 </div>
 </body>
 <!-- JavaScript Bundle with Popper -->

@@ -22,29 +22,42 @@
     <div style="color: white; font-size: 40px; font-family: 'Roboto Thin';">Путешествуй вместе с нами!</div>
 </div>
 <hr>
-<div class="inner" style="display: flex; flex-direction: row; justify-content: center">
-    <div class="wrapper">
-        <h4>Подробная информация о полете</h4>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Название авиакомпании: <span style="color:#02a2f7;">${ticket.title}</span></h5>
-                <p class="card-text">
-                    <b>Дата полета: </b>${ticket.date}<br>
-                    <b>Цена билета: </b>${ticket.price}РУБ<br>
-                    <b>Откуда: </b>${ticket.from_where}<br>
-                    <b>Куда: </b>${ticket.to_where}<br>
-                </p>
+<h4>Информация о пользователе</h4>
+<table class="table table-bordered border-primary" style="margin: 15px">
+    <tr>
+        <th>Email</th>
+        <th>Номер телефона</th>
+        <th>Имя пользователя</th>
+        <th>ID</th>
+    </tr>
+    <tr>
+        <th>${user.email}</th>
+        <th>${user.phoneNumber}</th>
+        <th>${user.name}</th>
+        <th>${user.id}</th>
+</table>
+<hr>
+<div class="user_tickets" style="margin: 15px">
+    <h4>Мои билеты</h4>
+    <div class="ticket_wrapper" style="display:flex; flex-direction: row; justify-content: center;">
+        <#list userTickets as ticket>
+            <div class="card" style="width: 18rem;margin:15px 5px;">
+                <div class="card-body">
+                    <h5 class="card-title"><b>${ticket.title}</b></h5>
+                    <p class="card-text">${ticket.from_where}  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                        </svg>   ${ticket.to_where}
+                    </p>
+                    <hr>
+                    <a href="/ticket/${ticket.id}" class="btn btn-primary stretched-link">Подробнее...</a>
+                </div>
             </div>
-        </div>
-        <#if user.isAdmin()>
-        <form action="/admin/ticket/delete/${ticket.id}" method="post">
-            <input type="hidden" name="_csrf" value="${_csrf.token}">
-            <input type="submit" value="Удалить рейс" class="btn btn-primary" style="margin: 5px 5px;">
-        </form>
-        </#if>
-        <a href="/ticket/${ticket.id}/buy" class="btn btn-primary">Купить билет</a>
-        </div>
+        <#else>
+            <h3>Билетов нет</h3>
+        </#list>
     </div>
+</div>
+<hr>
 </body>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script></script>

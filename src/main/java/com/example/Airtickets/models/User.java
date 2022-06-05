@@ -1,7 +1,6 @@
 package com.example.Airtickets.models;
 
 import com.example.Airtickets.enums.Role;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
@@ -12,7 +11,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Data
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +30,14 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_tickets",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "ticket_id") }
+    )
+    private Set<Ticket> userTickets = new HashSet<>();
     private LocalDateTime dateOfCreated;
 
     @PrePersist
@@ -46,6 +52,11 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override
@@ -71,5 +82,74 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return active;
+    }
+
+    // getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Ticket> getUserTickets() {
+        return userTickets;
+    }
+
+    public void setUserTickets(Set<Ticket> userTickets) {
+        this.userTickets = userTickets;
+    }
+
+    public LocalDateTime getDateOfCreated() {
+        return dateOfCreated;
+    }
+
+    public void setDateOfCreated(LocalDateTime dateOfCreated) {
+        this.dateOfCreated = dateOfCreated;
     }
 }
