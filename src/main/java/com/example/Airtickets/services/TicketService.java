@@ -1,14 +1,11 @@
 package com.example.Airtickets.services;
 
 import com.example.Airtickets.models.Ticket;
-import com.example.Airtickets.models.User;
 import com.example.Airtickets.repositories.TicketRepository;
-import com.example.Airtickets.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TicketService {
     private final TicketRepository ticketRepository;
-    private final UserRepository userRepository;
 
     private List<Ticket> tickets = new ArrayList<>();
     public List<Ticket> listTickets(String title) {
