@@ -24,7 +24,7 @@
 <hr>
 <div class="inner" style="display: flex; flex-direction: row; justify-content: center">
     <div class="wrapper">
-        <h4>Подробная информация о полете</h4>
+        <h4 style="margin: 5px;">Подробная информация о полете</h4>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Название авиакомпании: <span style="color:#02a2f7;">${ticket.title}</span></h5>
@@ -34,6 +34,7 @@
                     <b>Откуда: </b>${ticket.from_where}<br>
                     <b>Куда: </b>${ticket.to_where}<br>
                 </p>
+                <a href="/ticket/${ticket.id}/buy" class="btn btn-primary">Купить билет</a>
             </div>
         </div>
         <#if user.isAdmin()>
@@ -42,7 +43,6 @@
             <input type="submit" value="Удалить рейс" class="btn btn-primary" style="margin: 5px 5px;">
         </form>
         </#if>
-        <a href="/ticket/${ticket.id}/buy" class="btn btn-primary">Купить билет</a>
         </div>
     </div>
 </body>
