@@ -22,7 +22,7 @@
     <div style="color: white; font-size: 40px; font-family: 'Roboto Thin';">Путешествуй вместе с нами!</div>
 </div>
 <hr>
-<div class="inner" style="display: flex; flex-direction: row; justify-content: center">
+<div class="inner" style="display: flex; justify-content: center">
     <div class="wrapper">
         <h4>Подробная информация о полете</h4>
         <div class="card" style="width: 18rem;">
@@ -45,7 +45,8 @@
     </div>
 </div>
 <hr>
-<div class="buy_form">
+<div class="buy_form" style="display: flex; justify-content: center;">
+    <div class="wrapper_payment">
     <h4>Оплата билета</h4>
     <form action="/ticket/${ticket.id}/buy" method="post">
         <div class="mb-3">
@@ -63,6 +64,7 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" class="btn btn-primary" value="Подтвердить оплату">
     </form>
+</div>
 </div>
 </body>
 <!-- JavaScript Bundle with Popper -->

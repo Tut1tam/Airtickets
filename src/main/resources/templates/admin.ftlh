@@ -51,7 +51,8 @@
 </div>
 </div>
 <hr>
-<div class="add_ticket" style="margin: 15px;">
+<div class="add_ticket" style="margin: 15px; display: flex; justify-content: center;">
+    <div class="admin_wrapper">
     <h3>Добавить новый полет</h3>
     <form action="/admin/ticket/create" method="post">
         <div class="form-group">
@@ -77,6 +78,7 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <input type="submit" value="Добавить полет" class="btn btn-primary">
     </form>
+    </div>
 </div>
 </body>
 <!-- JavaScript Bundle with Popper -->
